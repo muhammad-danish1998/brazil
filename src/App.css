@@ -1,38 +1,235 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;600&family=Roboto+Condensed:wght@300&family=Roboto:wght@300&family=Zen+Kurenaido&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+    
+
+}
+h1,h2,h3{
+    font-family: 'Mulish', sans-serif;
+    font-size: 50px !important;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+}
+/* --------------------------------- */
+.main-container{
+    background: rgb(250 250 250);
+    /* height: 350vh; */
+}
+a{
+    text-decoration: none;
+}
+.nav-item a{
+    /* text-transform: capitalize; */
+    font-size: 1.5rem;
+}
+.nav-item a:hover{
+    color: rgb(42 185 191) !important;
+    border-bottom: 2px solid rgb(42 185 191);
+}
+.btn-navbar a{
+    border: 2px solid rgb(42 185 191);
+    background: rgb(42 185 191);
+    color: white !important;
+    margin-left: 10px;
+    padding: 5px;
+    border-radius: 4px;
+}
+.btn-navbar a:hover{
+    color: white !important;
+}
+/* ---------------- Header start ----------------------  */
+.header-image{
+    height: 60vh;
+
+}
+.hero-image {
+
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./images/headerimg.jpg");
+    height: 90%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    /* box-shadow: 10px 12px 5px 0px rgba(0,0,0,0.75); */
+
+}
+/* ---------------- About us ------------------  */
+ul li{
+    list-style: none;
+    font-size: 20px;
+}
+.about-left{
+    /* border: 2px solid red; */
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.service-left{
+    padding: 5px;
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: center; */
+    flex-direction: column;
+    /* border: 2px solid black; */
+    font-size: 26px;
+    text-align: justify;
+    
+}
+.service-left h5{
+    font-size: 30px;
+    font-weight: bold;
+}
+.about-left p{
+    text-align: justify;
+    font-size: 20px;
+}
+.about-left button {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(42 185 191) !important;
+    width: 31%;
+    color: white;
+    font-weight: bold;
+    /* box-shadow: 2px 6px 5px 0px rgb(0 0 0 / 75%); */
+    box-shadow: 2px 3px 5px 0px rgb(0 0 0 / 75%);
+    
+
+    
+}
+.service-left button{
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(42 185 191) !important;
+    width: 31%;
+    color: white;
+    font-weight: bold;
+    /* box-shadow: 10px 12px 5px 0px rgba(0,0,0,0.75); */
+    box-shadow: 2px 6px 5px 0px rgb(0 0 0 / 75%);
+    box-shadow: 2px 3px 5px 0px rgb(0 0 0 / 75%);
+    margin: 0 auto;
+
+
+}
+.about-left button:hover{
+   color: rgb(42 185 191) !important;
+   background: white !important;
+   border: 2px solid rgb(42 185 191) !important;
+}
+.service-left button:hover{
+    color: rgb(42 185 191) !important;
+    background: white !important;
+    border: 2px solid rgb(42 185 191) !important;
+ }
+.about-right{
+    /* border: 2px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.about-right img{
+    height: 387px;
+    margin-top: 40px;
+    border-radius: 10px;
+}
+.service-right{
+    display: flex;
+    align-items: center;
+    /* justify-content: flex-end; */
+    /* border: 2px solid black; */
+
+}
+.service-right img{
+    height: 387px;
+    margin-top: 40px;
+    border-radius: 10px;
+}
+.hading{
+    margin-top: 40px !important;
+}
+/* ---------------------------- card price --------------  */
+.pricing{
+    margin-top: 50px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.price-plane{
+    /* border: 2px solid black; */
+    /* margin: 40px 10px!important; */
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: -1px 1px 17px 5px rgb(0 0 0 / 50%);;
 }
+.price-plane:hover{
+    /* box-shadow: 10px 12px 12px 2px rgba(0,0,0,0.75); */
+    box-shadow: 2px 6px 5px 0px rgb(0 0 0 / 75%)
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.pricing-name{
+    color: rgb(42 185 191) !important;
+    margin-bottom: 50px;
 }
-
-.App-link {
-  color: #61dafb;
+.price-plane p{
+    color: #484148;
+    margin: 20px 0px;
 }
+.price-plane button{
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(42 185 191) !important;
+    color: white;
+    font-weight: bold;
+    /* box-shadow: 10px 12px 5px 0px rgba(0,0,0,0.75); */
+    box-shadow: 2px 3px 5px 0px rgb(0 0 0 / 75%);
+    border: none;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    
+}
+.price-plane button:hover{
+    color: rgb(42 185 191) !important;
+    background: white !important;
+    border: 2px solid rgb(42 185 191) !important;
+}
+/* ------------------------ Contact div ---------------  */
+
+
+.footer{
+    background: #4ab5b3;
+    color: white;
+    font-weight: bold;
+    margin-top: 10px;
+}
+@media screen and (max-width: 480px) {
+    .btn-navbar a{
+        margin: 5px 5px 5px 35%;
+       width: 41%;
+       text-align: center;
+       /* margin-left: 35%; */
+    }
+    .btn-navbar{
+        text-align: center;
+
+    }
+    .price-plane{
+        margin-top: 20px  !important;
+    }
+    .about-left button{
+        width: 34%;
+    }
+    .service-left h5{
+        font-size: 19px;
+        text-align: center;
+    }
+    ul li{
+        font-size: 16px;
+    }
 }
