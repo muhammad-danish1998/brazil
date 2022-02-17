@@ -33,7 +33,7 @@ const Contact = () => {
                     <div className='col-md-6 col-10 mx-auto'>
                         <form onSubmit={formSubmit}>
                             <div className="mb-3">
-                                <label for="exampleFormControlInput1" className="form-label">Name</label>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Name</label>
                                 <input type="text"
                                     className="form-control"
                                     id="exampleFormControlInput1"
@@ -44,7 +44,7 @@ const Contact = () => {
                                 />
                             </div>
                             <div className="mb-3">
-                                <label for="exampleFormControlInput1" className="form-label">Phone</label>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Phone</label>
                                 <input type="number"
                                     className="form-control"
                                     id="exampleFormControlInput1"
@@ -55,7 +55,7 @@ const Contact = () => {
                                 />
                             </div>
                             <div className="mb-3">
-                                <label for="exampleFormControlInput1" className="form-label">Email address</label>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Email address</label>
                                 <input type="email"
                                     className="form-control"
                                     id="exampleFormControlInput1"
@@ -66,7 +66,7 @@ const Contact = () => {
                                 />
                             </div>
                             <div className="mb-3">
-                                <label for="exampleFormControlTextarea1" className="form-label">Message</label>
+                                <label htmlFor="exampleFormControlTextarea1" className="form-label">Message</label>
                                 <textarea className="form-control"
                                     id="exampleFormControlTextarea1"
                                     rows="3"

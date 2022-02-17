@@ -23,7 +23,7 @@ const Services = () => {
                 <li>- Abertura de CNPJ</li>
                 <li>- Obrigações Acessórias</li>
                 </ul>
-                 <button type="button" class="btn  ">Get Started</button>
+                 <button type="button" className="btn  ">Get Started</button>
                 </div>
             </div>
         </div>

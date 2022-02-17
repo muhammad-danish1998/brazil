@@ -9,7 +9,7 @@ const Aboutus = () => {
                 <p>Deixe a burocracia com a gente! Disponibilizamos suporte
                  e apoio administrativo para você focar no que realmente importa:
                   os seus clientes.</p>
-                 <button type="button" class="btn  ">Comece aqui</button>
+                 <button type="button" className="btn  ">Comece aqui</button>
                 </div>
                 <div className='col-12 col-md-7 about-right' data-aos="fade-left"  >
                     <img src= {about} className='img-fluid' alt='about img' />

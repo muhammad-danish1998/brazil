@@ -1,0 +1,25 @@
+.login_div{
+    min-height: 51.3vh;
+}
+.footer p{
+    margin: 0px;
+}
+.dashboard_container{
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sidebar_container .nav-item{
+    color: rgb(42 185 191) !important;
+}
+.sidebar_container .nav-item a{
+    color: rgb(42 185 191) !important;
+}
+.register_div{
+    min-height: 51.3vh;
+}
+.btn-blue{
+    background-color: rgb(42 185 191) !important;
+    border: rgb(42 185 191) !important;
+}

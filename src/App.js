@@ -9,19 +9,33 @@ import Contact from './pages/Contact'
 import Price from './pages/Price'
 import Service from './pages/Service'
 import Error from './pages/Error'
+import Login from './pages/Login';
+import Registration from './pages/Register';
+import ContextProvider  from './context/ContextProvider';
+import { ToastContainer } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+import AuthRoute from './component/AuthRoute';
+import Dashboard from './pages/Dashboard';
+import PrivateRoute from './component/PrivateRoute';
 
 
 function App() {
   return (
     <>
-    <Switch>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/about' component={About} />
-        <Route exact path='/service' component={Service} />
-        <Route exact path='/price' component={Price} />
-        <Route exact path='/contact' component={Contact} />
-        <Route  component={Error} />
-    </Switch>
+      <ContextProvider>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/about' component={About} />
+          <Route exact path='/service' component={Service} />
+          <Route exact path='/price' component={Price} />
+          <Route exact path='/contact' component={Contact} />
+          <PrivateRoute exact path='/dashboard' component={Dashboard} />
+          <AuthRoute exact path='/login' component={Login} />
+          <AuthRoute exact path='/register' component={Registration} />
+          <Route component={Error} />
+        </Switch>
+        <ToastContainer />
+      </ContextProvider>
     </>
   );
 }

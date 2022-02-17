@@ -24,15 +24,15 @@ h1,h2,h3{
 a{
     text-decoration: none;
 }
-.nav-item a{
+.navbar_container .nav-item a{
     /* text-transform: capitalize; */
     font-size: 1.5rem;
 }
-.nav-item a:hover{
+.navbar_container .nav-item a:hover{
     color: rgb(42 185 191) !important;
     border-bottom: 2px solid rgb(42 185 191);
 }
-.btn-navbar a{
+.navbar_container .btn-navbar a{
     border: 2px solid rgb(42 185 191);
     background: rgb(42 185 191);
     color: white !important;
@@ -40,7 +40,7 @@ a{
     padding: 5px;
     border-radius: 4px;
 }
-.btn-navbar a:hover{
+.navbar_container .btn-navbar a:hover{
     color: white !important;
 }
 /* ---------------- Header start ----------------------  */
