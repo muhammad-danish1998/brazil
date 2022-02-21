@@ -17,6 +17,7 @@ import { ToastContainer } from 'react-toastify';
 import AuthRoute from './component/AuthRoute';
 import Dashboard from './pages/Dashboard';
 import PrivateRoute from './component/PrivateRoute';
+import Patients from './pages/Patients';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route exact path='/price' component={Price} />
           <Route exact path='/contact' component={Contact} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
+          <PrivateRoute exact path='/patients' component={Patients} />
           <AuthRoute exact path='/login' component={Login} />
           <AuthRoute exact path='/register' component={Registration} />
           <Route component={Error} />

@@ -23,3 +23,22 @@
     background-color: rgb(42 185 191) !important;
     border: rgb(42 185 191) !important;
 }
+.stepper-container .active{
+    background-color: grey !important;
+}
+
+.stepper-container .completed{
+    background-color: rgb(58, 58, 58) !important;
+}
+.aggrement-input{
+    margin-right: 8px;
+}
+.loading-container{
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.patient-add-details{
+    text-align: right;
+}

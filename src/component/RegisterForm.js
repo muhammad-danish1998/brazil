@@ -3,6 +3,9 @@ import firebase from 'firebase'
 import { GlobalContext } from '../context/ContextProvider'
 import { Stepper } from 'react-form-stepper';
 import './Register.css'
+
+const steps = [{ label: 'Step 1' }, { label: 'Step 2' }, { label: 'Step 3' }, { label: 'Step 4' }, { label: 'Step 5' }];
+
 const StepOne = ({ data, inputEvent }) => {
     return (
         <div className=''>
@@ -156,7 +159,18 @@ const StepThree = ({ data, inputEvent }) => {
     )
 }
 
-const StepFour = ({ data, inputEvent }) => {
+const StepFour = ({ fileEvent }) => {
+    return (
+        <div className=''>
+            <div className="mb-3">
+                <label htmlFor="formFile" className="form-label">Choose Your Logo</label>
+                <input onChange={fileEvent} className="form-control" type="file" name='logo' id="logo" />
+            </div>
+        </div>
+    )
+}
+
+const StepFive = ({ data, inputEvent, checkboxEvent }) => {
     return (
         <div className=''>
             <div className="mb-3">
@@ -182,14 +196,13 @@ const StepFour = ({ data, inputEvent }) => {
                 />
             </div>
             <div className="mb-3">
+            <input className="form-check-input aggrement-input" name="aggrement" onChange={checkboxEvent} type="checkbox" checked={data.aggrement} id="aggrement" />
                 <label htmlFor="agreementPolicyFormItem" className="form-label">Agreement Policy</label>
-                <a href='#'>Click here</a>
-                {/* <input type="checkbox"
-                ></input> */}
             </div>
         </div>
     )
 }
+
 
 const Register = () => {
     let [data, setData] = useState({
@@ -207,12 +220,15 @@ const Register = () => {
         uf: '',
         password: '',
         repassword: '',
+        logo: null,
+        aggrement: false
     })
     let [loading, setLoading] = useState(false);
     const [activeStep, setActiveStep] = useState(0);
     const { notify } = useContext(GlobalContext);
 
     const inputEvent = (e) => {
+        console.log(e)
         const { name, value } = e.target;
         setData((preVal) => {
             return {
@@ -222,10 +238,42 @@ const Register = () => {
         });
     }
 
+    const checkboxEvent = (e) => {
+        const { name, checked } = e.target;
+        setData((preVal) => {
+            return {
+                ...preVal,
+                [name]: checked,
+            }
+        });
+    }
+
+    const fileEvent = (e) => {
+        const { files } = e.target;
+        const file = files[0];
+        setData((preVal) => {
+            return {
+                ...preVal,
+                logo: file,
+            }
+        });
+    }
+
     const nextStep = () => {
-        if (activeStep === 3) {
+        if (activeStep === steps.length - 1) {
+            if(data.aggrement){
             handleRegistration()
-        } else {
+            }else{
+                notify('You have to accept the agreement','error')
+            }
+        } else if (activeStep === 3) {
+            if (data.logo) {
+                setActiveStep(activeStep + 1);
+            } else {
+                notify('Please choose your logo', 'error')
+            }
+        }
+        else {
             setActiveStep(activeStep + 1);
         }
     }
@@ -239,17 +287,34 @@ const Register = () => {
         }
         firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
             .then(res => {
-                const { password, ...rest } = data
+                const { password, logo, ...rest } = data
+                console.log("🚁 ~ file: RegisterForm.js ~ line 291 ~ handleRegistration ~ rest", rest)
                 firebase.firestore().collection("users").doc(res.user.uid).set({
                     ...rest
                 })
                     .then(() => {
-                        setLoading(false);
-                        notify('Successfully Created Your Account!', 'success');
+                        firebase.storage().ref(`/users/${res.user.uid}/logo`).put(data.logo).then((uploadSnap) => {
+                            console.log("🚁 ~ file: RegisterForm.js ~ line 282 ~ firebase.storage ~ uploadSnap", uploadSnap)
+                            firebase.storage().ref(`/users/${res.user.uid}/logo`).getDownloadURL().then((url) => {
+                                firebase.firestore().collection("users").doc(res.user.uid).update({
+                                    logo: url
+                                }).then(() => {
+                                    setLoading(false);
+                                    notify('Successfully Created Your Account!', 'success');
+                                }).catch(err => {
+                                    setLoading(false);
+                                    notify(err.message, 'error');
+                                    console.log("🚁 ~ file: RegisterForm.js ~ line 298 ~ firebase.firestore ~ err", err)
+                                })
+                            })
+                        }).catch((error) => {
+                            setLoading(false);
+                            notify('Error Uploading Your Logo', error);
+                        })
                     }
                     )
                     .catch(err => {
-                        console.log(err);
+                        console.log("error in saving data",err);
                         notify(err.message, 'error');
                         setLoading(false);
                     })
@@ -271,15 +336,18 @@ const Register = () => {
             </div>
             <div className='container  register_div'>
                 <div className='row'>
-                    <div className='col-md-6 col-10 mx-auto'>
-                        <Stepper steps={[{ label: 'Step 1' }, { label: 'Step 2' }, { label: 'Step 3' }, { label: 'Step 4' }]} activeStep={activeStep} />
-                        <Steps step={activeStep} data={data} inputEvent={inputEvent} />
+                    <div className='stepper-container col-md-6 col-10 mx-auto'>
+                        <Stepper
+                            steps={steps}
+                            activeStep={activeStep}
+                        />
+                        <Steps step={activeStep} data={data} checkboxEvent={checkboxEvent} fileEvent={fileEvent} inputEvent={inputEvent} />
                         {
                             activeStep > 0 && (
                                 <button disabled={loading} className='btn btn-blue btn-primary btn-block mt-4' onClick={() => setActiveStep((prevVal) => prevVal - 1)}>Prev</button>
                             )
                         }
-                        <button style={{ marginLeft: "5px" }} disabled={loading} className='btn btn-blue btn-primary btn-block mt-4' onClick={() => nextStep()}>{activeStep == 3 ? "Register" : "Next"}</button>
+                        <button style={{ marginLeft: "5px" }} disabled={loading} className='btn btn-blue btn-primary btn-block mt-4' onClick={() => nextStep()}>{activeStep == (steps.length - 1) ? "Register" : "Next"}</button>
                     </div>
                 </div>
 
@@ -300,6 +368,8 @@ const Steps = (props) => {
             return <StepThree {...props} />
         case 3:
             return <StepFour {...props} />
+        case 4:
+            return <StepFive {...props} />
         default:
             return <StepOne {...props} />
 

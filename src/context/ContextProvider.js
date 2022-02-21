@@ -10,13 +10,14 @@ const ContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     useEffect(() => {
         // useEffect with firebase auth to get current user
-        const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+        const unsubscribe = firebase.auth().onAuthStateChanged(async user => {
             if (!user) {
                 dispatch({ type: 'SET_CURRENT_USER', payload: null });
                 
             } else {
+              const userData = await getCurrnetUserData(user.uid);
                 dispatch({ type: 'SET_CURRENT_USER', payload: user });
-                getCurrnetUserData(user.uid);
+                dispatch({ type: 'SET_USER_DATA', payload: userData });
             }
         });
 
@@ -25,14 +26,15 @@ const ContextProvider = ({ children }) => {
         };
     }, []);
 
-    const getCurrnetUserData = (uid) => {
-        firebase.firestore().collection('users').doc(uid).get().then(doc => {
+    const getCurrnetUserData = async (uid) => {
+      const data =  firebase.firestore().collection('users').doc(uid).get().then(doc => {
             if (doc.exists) {
-                dispatch({ type: 'SET_USER_DATA', payload: doc.data() });
+                return doc.data()
             } else {
-                dispatch({ type: 'SET_USER_DATA', payload: null });
+                return null
             }
         });
+    return data
     }
 
     const notify = (message, type) => {
@@ -56,7 +58,7 @@ const ContextProvider = ({ children }) => {
             {
                 state.currentUserLoading ?
                     (
-                        <div className="d-flex justify-content-center">
+                        <div className="d-flex justify-content-center loading-container">
                             <div className="spinner-border" role="status">
                             </div>
                         </div>
