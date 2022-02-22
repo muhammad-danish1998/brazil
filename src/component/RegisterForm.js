@@ -155,6 +155,17 @@ const StepThree = ({ data, inputEvent }) => {
                     onChange={inputEvent}
                 />
             </div>
+            <div className="mb-3">
+                <label htmlFor="houseNoFormItem" className="form-label">House Number</label>
+                <input type="text"
+                    className="form-control"
+                    id="houseNoFormItem"
+                    placeholder="House Number"
+                    name='houseNo'
+                    value={data.houseNo}
+                    onChange={inputEvent}
+                />
+            </div>
         </div>
     )
 }
@@ -221,14 +232,14 @@ const Register = () => {
         password: '',
         repassword: '',
         logo: null,
-        aggrement: false
+        aggrement: false,
+        houseNo:'',
     })
     let [loading, setLoading] = useState(false);
     const [activeStep, setActiveStep] = useState(0);
     const { notify } = useContext(GlobalContext);
 
     const inputEvent = (e) => {
-        console.log(e)
         const { name, value } = e.target;
         setData((preVal) => {
             return {
@@ -266,12 +277,6 @@ const Register = () => {
             }else{
                 notify('You have to accept the agreement','error')
             }
-        } else if (activeStep === 3) {
-            if (data.logo) {
-                setActiveStep(activeStep + 1);
-            } else {
-                notify('Please choose your logo', 'error')
-            }
         }
         else {
             setActiveStep(activeStep + 1);
@@ -288,14 +293,17 @@ const Register = () => {
         firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
             .then(res => {
                 const { password, logo, ...rest } = data
-                console.log("🚁 ~ file: RegisterForm.js ~ line 291 ~ handleRegistration ~ rest", rest)
                 firebase.firestore().collection("users").doc(res.user.uid).set({
-                    ...rest
+                    ...rest,
                 })
                     .then(() => {
-                        firebase.storage().ref(`/users/${res.user.uid}/logo`).put(data.logo).then((uploadSnap) => {
-                            console.log("🚁 ~ file: RegisterForm.js ~ line 282 ~ firebase.storage ~ uploadSnap", uploadSnap)
-                            firebase.storage().ref(`/users/${res.user.uid}/logo`).getDownloadURL().then((url) => {
+                        if(!logo){
+                            setLoading(false);
+                            notify('Successfully Created Your Account!', 'success');
+                            return null; 
+                        }
+                        firebase.storage().ref(`/users/${res.user.uid}/${data.logo.name}`).put(data.logo).then((uploadSnap) => {
+                            firebase.storage().ref(`/users/${res.user.uid}/${data.logo.name}`).getDownloadURL().then((url) => {
                                 firebase.firestore().collection("users").doc(res.user.uid).update({
                                     logo: url
                                 }).then(() => {
