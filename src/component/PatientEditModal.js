@@ -231,7 +231,7 @@ export default function PatientEditModal(props) {
                             {
                                 loading ? (
                                     <>
-                                        <span class="spinner-border spinner-border-sm text-white mr-5" role="status" aria-hidden="true"></span>
+                                        <span className="spinner-border spinner-border-sm text-white mr-5" role="status" aria-hidden="true"></span>
                                         Saving...
                                     </>
                                 ) : (

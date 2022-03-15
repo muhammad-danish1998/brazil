@@ -45,3 +45,9 @@
 .mr-5{
     margin-right: 5px;
 }
+.sidebar_container .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    background-color: rgb(42 185 191) !important;
+    color: white !important;
+    width: 150px !important;
+    padding-left: 10px !important;
+}
