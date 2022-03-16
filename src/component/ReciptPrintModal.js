@@ -34,7 +34,7 @@ export default function ReciptPrintModal(props) {
                                     <div className='reciept-top-container'>
                                         <div className='reciept-top-left-container'>
                                             <img
-                                                src={require('../images/logo.jpeg')}
+                                                src={ data?.currentUserData?.logo || require('../images/logo.jpeg')}
                                                 className='reciept-top-left-logo'
                                                 alt='logo'
                                             />
