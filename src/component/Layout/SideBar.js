@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
-import logo from '../../images/logo.jpeg'
 import { NavLink } from 'react-router-dom'
 import firebase from 'firebase';
+import logo from '../../images/logo.jpeg'
 import { GlobalContext } from '../../context/ContextProvider';
 import avatar from '../../images/avatar.jpg'
 

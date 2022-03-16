@@ -1,53 +1,152 @@
-.login_div{
+.login_div {
     min-height: 51.3vh;
 }
-.footer p{
+.footer p {
     margin: 0px;
 }
-.dashboard_container{
+.dashboard_container {
     min-height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.sidebar_container .nav-item{
+.sidebar_container .nav-item {
     color: rgb(42 185 191) !important;
 }
-.sidebar_container .nav-item a{
+.sidebar_container .nav-item a {
     color: rgb(42 185 191) !important;
 }
-.register_div{
+.register_div {
     min-height: 51.3vh;
 }
-.btn-blue{
+.btn-blue {
     background-color: rgb(42 185 191) !important;
     border: rgb(42 185 191) !important;
 }
-.stepper-container .active{
+.stepper-container .active {
     background-color: grey !important;
 }
 
-.stepper-container .completed{
+.stepper-container .completed {
     background-color: rgb(58, 58, 58) !important;
 }
-.aggrement-input{
+.aggrement-input {
     margin-right: 8px;
 }
-.loading-container{
+.loading-container {
     min-height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.patient-add-details{
+.patient-add-details {
     text-align: right;
 }
-.mr-5{
+.mr-5 {
     margin-right: 5px;
 }
-.sidebar_container .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+.sidebar_container .nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
     background-color: rgb(42 185 191) !important;
     color: white !important;
     width: 150px !important;
     padding-left: 10px !important;
+}
+#ReciptPrintModal .modal-dialog {
+    min-width: 70vw;
+}
+.print-reciept-main-container {
+    min-height: 70vh;
+}
+.print-reciept-container {
+    width: 100%;
+    border: 1px solid black;
+    height: 400px;
+}
+.reciept-top-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 50%;
+}
+.reciept-middle-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 20%;
+    padding-left: 40px;
+}
+
+.reciept-bottom-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+}
+.reciept-signature-box {
+    height: 200px;
+    width: 200px;
+    border-bottom: 1px solid black;
+}
+.reciept-top-left-container {
+    width: 25%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
+}
+.reciept-top-center-container {
+    width: 50%;
+}
+.reciept-top-right-container {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding: 20px !important;
+}
+.reciept-amount-heading {
+    font-weight: bolder;
+}
+.reciept-amount-container {
+}
+.reciept-amount-para {
+    padding: 8px 50px;
+    border: 1px solid black;
+}
+.reciept-top-left-container,
+.reciept-top-center-container,
+.reciept-top-right-container {
+    padding: 5px;
+    padding-top: 10px;
+}
+.reciept-top-left-logo {
+    /* width: 200px; */
+    /* height: 200px; */
+    height: 100%;
+    width: 100%;
+}
+.reciept-top-center-info {
+    margin: 0px;
+    padding: 0px;
+}
+
+.print-actions-buttons {
+    text-align: center;
+}
+.print-actions-buttons button {
+    margin: 10px;
+}
+@media print {
+    .print-reciept-container {
+        width: 97%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }

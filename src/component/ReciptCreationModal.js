@@ -1,25 +1,40 @@
 import React, { useContext, useState, useEffect } from 'react'
 import firebase from 'firebase'
 import { GlobalContext } from '../context/ContextProvider';
+import ReciptPrintModal from './ReciptPrintModal';
 
 export default function ReciptCreationModal(props) {
     const { data } = props
     console.log("🚁 ~ file: ReciptCreationModal.js ~ line 7 ~ ReciptCreationModal ~ data", data.charges)
     const cancelRef = React.useRef(null);
+    const openModalRef = React.useRef()
     const { notify } = useContext(GlobalContext);
     const [loading, setLoading] = useState(false)
     const [sessionQty, setSessionQty] = useState(1)
     const [sessionArray, setSessionArray] = useState([""])
     const [recieptAmount, setRecieptAmount] = useState(0)
-    const [signatureDate, setSignatureDate] = useState("");
+    const [signatureDate, setSignatureDate] = useState((new Date().toISOString()).split("T")[0]);
     const handleCreate = () => {
-
+        let hasNull = false;
+        if (sessionArray.length === 0) {
+            return notify("Please select atleast one session", "error")
+        }
+        sessionArray.forEach((eachSessionDate) => {
+            if (eachSessionDate === "") {
+                hasNull = true;
+            }
+        })
+        if (hasNull) {
+            notify("Please select all session date", "error")
+        } else {
+            openModalRef.current.click()
+        }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         const { data } = props;
         setRecieptAmount(data?.charges || 0)
-    },[data])
+    }, [data])
 
     useEffect(() => {
         var myModal = document.getElementById('ReciptCreationModal');
@@ -54,9 +69,9 @@ export default function ReciptCreationModal(props) {
     const onCancel = () => {
         const { onCancel: propsOnCancel } = props;
         setSessionQty(0)
-        setSessionArray([])
+        setSessionArray([""])
         setRecieptAmount(0)
-        setSignatureDate("")
+        setSignatureDate((new Date().toISOString()).split("T")[0])
         propsOnCancel()
     }
 
@@ -150,7 +165,8 @@ export default function ReciptCreationModal(props) {
                     </div>
                     <div className="modal-footer">
                         <button ref={cancelRef} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button disabled={loading} onClick={handleCreate} type="button" className="btn btn-primary">
+                        <span ref={openModalRef} data-bs-toggle="modal" data-bs-target="#ReciptPrintModal"></span>
+                        <button disabled={loading} onClick={handleCreate} type="button" className="btn btn-primary" >
                             {
                                 loading ? (
                                     <>
@@ -165,6 +181,17 @@ export default function ReciptCreationModal(props) {
                     </div>
                 </div>
             </div>
+            <ReciptPrintModal
+                data={
+                    {
+                        sessionQty,
+                        sessionArray,
+                        recieptAmount,
+                        signatureDate,
+                        patient: data,
+                    }
+                }
+            />
         </div>
     )
 }

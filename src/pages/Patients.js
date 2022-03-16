@@ -78,7 +78,7 @@ function Patients() {
   const handleDelete = async (e, docId) => {
     const [isOk] = await alertConfirm({
       type: 'Title',
-      content: 'Content',
+      content: 'Are You Sure You Want To Delete This Patient?',
       okText: "Yes",
       cancelText: "No",
     });
