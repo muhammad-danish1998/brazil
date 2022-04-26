@@ -4,50 +4,51 @@ import { GlobalContext } from '../context/ContextProvider'
 import { Stepper } from 'react-form-stepper';
 import './Register.css'
 
-const steps = [{ label: 'Step 1' }, { label: 'Step 2' }, { label: 'Step 3' }, { label: 'Step 4' }, { label: 'Step 5' }];
+const steps = [{ label: 'Passo 1' }, { label: 'Passo 2' }, { label: 'Passo 3' }, { label: 'Passo 4' }, { label: 'Passo 5' }];
 
 const StepOne = ({ data, inputEvent }) => {
     return (
         <div className=''>
             <div className="mb-3">
-                <label htmlFor="nameFormItem" className="form-label">Name</label>
+                <label htmlFor="nameFormItem" className="form-label">Nome</label>
                 <input type="text"
                     className="form-control"
                     id="nameFormItem"
-                    placeholder="Name"
+                    placeholder="Nome"
                     name='name'
+                    required
                     value={data.name}
                     onChange={inputEvent}
                 />
             </div>
             <div className="mb-3">
-                <label htmlFor="lastNameFormItem" className="form-label">Last Name</label>
+                <label htmlFor="lastNameFormItem" className="form-label">Sobrenome</label>
                 <input type="text"
                     className="form-control"
                     id="lastNameFormItem"
-                    placeholder="Last Name"
+                    placeholder="Sobrenome"
                     name='lastName'
                     value={data.lastName}
                     onChange={inputEvent}
                 />
             </div>
             <div className="mb-3">
-                <label htmlFor="emailFormItem" className="form-label">Email address</label>
+                <label htmlFor="emailFormItem" className="form-label">Endereço de e-mail</label>
                 <input type="email"
                     className="form-control"
                     id="emailFormItem"
-                    placeholder="name@example.com"
+                    placeholder="Endereço de e-mail"
                     name='email'
                     value={data.email}
                     onChange={inputEvent}
                 />
             </div>
             <div className="mb-3">
-                <label htmlFor="phoneNoFormItem" className="form-label">Phone No</label>
+                <label htmlFor="phoneNoFormItem" className="form-label">Celular</label>
                 <input type="number"
                     className="form-control"
                     id="phoneNoFormItem"
-                    placeholder="Phone No"
+                    placeholder="Celular"
                     name='phoneNo'
                     value={data.phoneNo}
                     onChange={inputEvent}
@@ -101,15 +102,26 @@ const StepThree = ({ data, inputEvent }) => {
                 />
             </div>
             <div className="mb-3">
-                <label htmlFor="addressFormItem" className="form-label">Address</label>
+                <label htmlFor="addressFormItem" className="form-label">Endereço</label>
                 <textarea className="form-control"
                     id="addressFormItem"
                     rows="3"
                     name='address'
-                    placeholder='Address'
+                    placeholder='Endereço'
                     value={data.address}
                     onChange={inputEvent}>
                 </textarea>
+            </div>
+            <div className="mb-3">
+                <label htmlFor="houseNoFormItem" className="form-label">Número</label>
+                <input type="text"
+                    className="form-control"
+                    id="houseNoFormItem"
+                    placeholder="Número"
+                    name='houseNo'
+                    value={data.houseNo}
+                    onChange={inputEvent}
+                />
             </div>
             <div className="mb-3">
                 <label htmlFor="complementoFormItem" className="form-label">Complemento</label>
@@ -155,17 +167,7 @@ const StepThree = ({ data, inputEvent }) => {
                     onChange={inputEvent}
                 />
             </div>
-            <div className="mb-3">
-                <label htmlFor="houseNoFormItem" className="form-label">House Number</label>
-                <input type="text"
-                    className="form-control"
-                    id="houseNoFormItem"
-                    placeholder="House Number"
-                    name='houseNo'
-                    value={data.houseNo}
-                    onChange={inputEvent}
-                />
-            </div>
+           
         </div>
     )
 }
@@ -174,7 +176,7 @@ const StepFour = ({ fileEvent }) => {
     return (
         <div className=''>
             <div className="mb-3">
-                <label htmlFor="formFile" className="form-label">Choose Your Logo</label>
+                <label htmlFor="formFile" className="form-label">Escolha seu logo</label>
                 <input onChange={fileEvent} className="form-control" type="file" name='logo' id="logo" />
             </div>
         </div>
@@ -185,22 +187,22 @@ const StepFive = ({ data, inputEvent, checkboxEvent }) => {
     return (
         <div className=''>
             <div className="mb-3">
-                <label htmlFor="passwordFormItem" className="form-label">Password</label>
+                <label htmlFor="passwordFormItem" className="form-label">Senha</label>
                 <input type="password"
                     className="form-control"
                     id="passwordFormItem"
-                    placeholder="Password"
+                    placeholder="Senha"
                     name='password'
                     value={data.password}
                     onChange={inputEvent}
                 />
             </div>
             <div className="mb-3">
-                <label htmlFor="repasswordFormItem" className="form-label">Re Password</label>
+                <label htmlFor="repasswordFormItem" className="form-label">Repetir Senha</label>
                 <input type="password"
                     className="form-control"
                     id="repasswordFormItem"
-                    placeholder="Re Password"
+                    placeholder="Repetir Senha"
                     name='repassword'
                     value={data.repassword}
                     onChange={inputEvent}
@@ -208,7 +210,7 @@ const StepFive = ({ data, inputEvent, checkboxEvent }) => {
             </div>
             <div className="mb-3">
             <input className="form-check-input aggrement-input" name="aggrement" onChange={checkboxEvent} type="checkbox" checked={data.aggrement} id="aggrement" />
-                <label htmlFor="agreementPolicyFormItem" className="form-label">Agreement Policy</label>
+                <label htmlFor="agreementPolicyFormItem" className="form-label">Aceito os termos de uso</label>
             </div>
         </div>
     )
@@ -275,7 +277,7 @@ const Register = () => {
             if(data.aggrement){
             handleRegistration()
             }else{
-                notify('You have to accept the agreement','error')
+                notify('Você precisa aceitar os termos de uso.','error')
             }
         }
         else {
@@ -287,7 +289,7 @@ const Register = () => {
 
     const handleRegistration = () => {
         if (data.password !== data.repassword) {
-            notify('Password and Re Password must be the same', 'error');
+            notify('As senhas digitadas não coincidem', 'error');
             return;
         }
         firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
@@ -329,7 +331,7 @@ const Register = () => {
             })
             .catch(err => {
                 console.log(err);
-                if (err.message == "The email address is badly formatted." || err.message == "The email address is already in use by another account.") {
+                if (err.message == "Favor inserir endereço de e-mail em um formato válido" || err.message == "The email address is already in use by another account.") {
                     setActiveStep(0)
                 }
                 notify(err.message, 'error');
@@ -340,7 +342,7 @@ const Register = () => {
     return (
         <>
             <div className='my-5'>
-                <h1 className='text-center'> Registre-se</h1>
+                <h1 className='text-center'>Inscrever-se</h1>
             </div>
             <div className='container  register_div'>
                 <div className='row'>
@@ -352,10 +354,10 @@ const Register = () => {
                         <Steps step={activeStep} data={data} checkboxEvent={checkboxEvent} fileEvent={fileEvent} inputEvent={inputEvent} />
                         {
                             activeStep > 0 && (
-                                <button disabled={loading} className='btn btn-blue btn-primary btn-block mt-4' onClick={() => setActiveStep((prevVal) => prevVal - 1)}>Prev</button>
+                                <button disabled={loading} className='btn btn-blue btn-primary btn-block mt-4' onClick={() => setActiveStep((prevVal) => prevVal - 1)}>Voltar</button>
                             )
                         }
-                        <button style={{ marginLeft: "5px" }} disabled={loading} className='btn btn-blue btn-primary btn-block mt-4' onClick={() => nextStep()}>{activeStep == (steps.length - 1) ? "Register" : "Next"}</button>
+                        <button style={{ marginLeft: "5px" }} disabled={loading} className='btn btn-blue btn-primary btn-block mt-4' onClick={() => nextStep()}>{activeStep == (steps.length - 1) ? "Registrar" : "Avançar"}</button>
                     </div>
                 </div>
 

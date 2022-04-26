@@ -8,12 +8,23 @@ export default function PatientEditModal(props) {
     const { notify } = useContext(GlobalContext);
     const [loading, setLoading] = useState(false)
     const handleSave = () => {
-        setLoading(true)
-        if (editMode) {
-            editPatient()
-        } else {
-            addPatient()
+        
+        if(data.name == "" || data.sureName == "" || data.rg == "" || data.cpf == "" || data.celular == "" || data.endereco == ""   ){
+            alert('empty')
+        setLoading(false)
+        
+
         }
+        else{
+        setLoading(true)
+
+            if (editMode) {
+                editPatient()
+            } else {
+                addPatient()
+            }    
+        }
+        
     }
 
     const editPatient = () => {
@@ -62,7 +73,7 @@ export default function PatientEditModal(props) {
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">{editMode ? "Edit" : "Add"} Patient</h5>
+                        <h5 className="modal-title" id="exampleModalLabel">{editMode ? "Editar" : "Adicionar"} Paciente</h5>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
@@ -72,6 +83,7 @@ export default function PatientEditModal(props) {
                                 <div className="col-md-6 mb-3">
                                     <label htmlFor="PatientNameFormItem" className="form-label">Nome</label>
                                     <input type="text"
+                                        
                                         className="form-control"
                                         id="PatientNameFormItem"
                                         placeholder="Nome"
@@ -148,11 +160,11 @@ export default function PatientEditModal(props) {
                             {/* New Row */}
                             <div className="row">
                                 <div className="col-md-6 mb-3">
-                                    <label htmlFor="emailFormItem" className="form-label">E-mail</label>
+                                    <label htmlFor="emailFormItem" className="form-label">Endereço de e-mail</label>
                                     <input type="text"
                                         className="form-control"
                                         id="emailFormItem"
-                                        placeholder="E-mail"
+                                        placeholder="Endereço de e-mail"
                                         name='email'
                                         value={data.email}
                                         onChange={inputEvent}
@@ -185,11 +197,11 @@ export default function PatientEditModal(props) {
                                     />
                                 </div>
                                 <div className="col-md-6 mb-3">
-                                    <label htmlFor="ocupationFormItem" className="form-label">Ocupation</label>
+                                    <label htmlFor="ocupationFormItem" className="form-label">Profissão</label>
                                     <input type="text"
                                         className="form-control"
                                         id="ocupationFormItem"
-                                        placeholder="Ocupation"
+                                        placeholder="Profissão"
                                         name='ocupation'
                                         value={data.ocupation}
                                         onChange={inputEvent}
@@ -200,22 +212,22 @@ export default function PatientEditModal(props) {
                             {/* New Row */}
                             <div className="row">
                                 <div className="col-md-6 mb-3">
-                                    <label htmlFor="chargesFormItem" className="form-label">Charges</label>
+                                    <label htmlFor="chargesFormItem" className="form-label">Valor da Consulta</label>
                                     <input type="text"
                                         className="form-control"
                                         id="chargesFormItem"
-                                        placeholder="Charges"
+                                        placeholder="Valor da Consulta"
                                         name='charges'
                                         value={data.charges}
                                         onChange={inputEvent}
                                     />
                                 </div>
                                 <div className="col-md-6 mb-3">
-                                    <label htmlFor="patientSinceFormItem" className="form-label">Patient Since</label>
+                                    <label htmlFor="patientSinceFormItem" className="form-label">Paciente desde</label>
                                     <input type="date"
                                         className="form-control"
                                         id="patientSinceFormItem"
-                                        placeholder="Patient Since"
+                                        placeholder="Paciente desde"
                                         name='patientSince'
                                         value={data.patientSince}
                                         onChange={inputEvent}
@@ -226,7 +238,7 @@ export default function PatientEditModal(props) {
                         </div>
                     </div>
                     <div className="modal-footer">
-                        <button ref={cancelRef} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button ref={cancelRef} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                         <button disabled={loading} onClick={handleSave} type="button" className="btn btn-primary">
                             {
                                 loading ? (
@@ -235,7 +247,7 @@ export default function PatientEditModal(props) {
                                         Saving...
                                     </>
                                 ) : (
-                                    'Save changes'
+                                    'Salvar'
                                 )
                             }
                         </button>

@@ -79,7 +79,7 @@ export default function ReciptPrintModal(props) {
                                         trigger={() => {
                                             // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
                                             // to the root node of the returned component as it will be overwritten.
-                                            return <button className="btn btn-primary">Print</button>;
+                                            return <button className="btn btn-primary">Gerar Recibo</button>;
                                         }}
                                         content={() => slipRef.current}
                                     />
