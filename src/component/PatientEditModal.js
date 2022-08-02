@@ -32,7 +32,7 @@ export default function PatientEditModal(props) {
             ...data,
             updatedAt: new Date(),
         }).then((doc) => {
-            notify('Patient Updated Successfully!', 'success')
+            notify('Paciente atualizado com sucesso!', 'success')
             cancelRef.current.click()
             setLoading(false)
         }).catch((error) => {
@@ -53,7 +53,7 @@ export default function PatientEditModal(props) {
                 docId: doc.id
             }).then(() => {
                 // getPatientsData()
-                notify('Patient Added Successfully!', 'success')
+                notify('Paciente adicionado com sucesso!', 'success')
                 cancelRef.current.click()
                 setLoading(false)
             }).catch((error) => {
@@ -170,17 +170,7 @@ export default function PatientEditModal(props) {
                                         onChange={inputEvent}
                                     />
                                 </div>
-                                <div className="col-md-6 mb-3">
-                                    <label htmlFor="valordaConsultaFormItem" className="form-label">Valor da Consulta</label>
-                                    <input type="text"
-                                        className="form-control"
-                                        id="valordaConsultaFormItem"
-                                        placeholder="Valor da Consulta"
-                                        name='valordaConsulta'
-                                        value={data.valordaConsulta}
-                                        onChange={inputEvent}
-                                    />
-                                </div>
+                              
                             </div>
                             {/* End Row */}
                             {/* New Row */}
@@ -213,7 +203,8 @@ export default function PatientEditModal(props) {
                             <div className="row">
                                 <div className="col-md-6 mb-3">
                                     <label htmlFor="chargesFormItem" className="form-label">Valor da Consulta</label>
-                                    <input type="text"
+                                    <input type="number"
+                                   
                                         className="form-control"
                                         id="chargesFormItem"
                                         placeholder="Valor da Consulta"
