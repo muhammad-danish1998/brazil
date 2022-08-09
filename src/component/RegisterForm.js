@@ -167,7 +167,7 @@ const StepThree = ({ data, inputEvent }) => {
                     onChange={inputEvent}
                 />
             </div>
-           
+
         </div>
     )
 }
@@ -209,7 +209,7 @@ const StepFive = ({ data, inputEvent, checkboxEvent }) => {
                 />
             </div>
             <div className="mb-3">
-            <input className="form-check-input aggrement-input" name="aggrement" onChange={checkboxEvent} type="checkbox" checked={data.aggrement} id="aggrement" />
+                <input className="form-check-input aggrement-input" name="aggrement" onChange={checkboxEvent} type="checkbox" checked={data.aggrement} id="aggrement" />
                 <label htmlFor="agreementPolicyFormItem" className="form-label">Aceito os termos de uso</label>
             </div>
         </div>
@@ -235,11 +235,11 @@ const Register = () => {
         repassword: '',
         logo: null,
         aggrement: false,
-        houseNo:'',
+        houseNo: '',
     })
     let [loading, setLoading] = useState(false);
     const [activeStep, setActiveStep] = useState(0);
-    const { notify } = useContext(GlobalContext);
+    const { notify, fetchUserData } = useContext(GlobalContext);
 
     const inputEvent = (e) => {
         const { name, value } = e.target;
@@ -274,10 +274,10 @@ const Register = () => {
 
     const nextStep = () => {
         if (activeStep === steps.length - 1) {
-            if(data.aggrement){
-            handleRegistration()
-            }else{
-                notify('Você precisa aceitar os termos de uso.','error')
+            if (data.aggrement) {
+                handleRegistration()
+            } else {
+                notify('Você precisa aceitar os termos de uso.', 'error')
             }
         }
         else {
@@ -299,16 +299,19 @@ const Register = () => {
                     ...rest,
                 })
                     .then(() => {
-                        if(!logo){
+                        if (!logo) {
                             setLoading(false);
                             notify('Successfully Created Your Account!', 'success');
-                            return null; 
+                            return null;
                         }
                         firebase.storage().ref(`/users/${res.user.uid}/${data.logo.name}`).put(data.logo).then((uploadSnap) => {
                             firebase.storage().ref(`/users/${res.user.uid}/${data.logo.name}`).getDownloadURL().then((url) => {
                                 firebase.firestore().collection("users").doc(res.user.uid).update({
                                     logo: url
                                 }).then(() => {
+                                    if (fetchUserData) {
+                                        fetchUserData(firebase.auth().currentUser)
+                                    }
                                     setLoading(false);
                                     notify('Successfully Created Your Account!', 'success');
                                 }).catch(err => {
@@ -324,7 +327,7 @@ const Register = () => {
                     }
                     )
                     .catch(err => {
-                        console.log("error in saving data",err);
+                        console.log("error in saving data", err);
                         notify(err.message, 'error');
                         setLoading(false);
                     })
