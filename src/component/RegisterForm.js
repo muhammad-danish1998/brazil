@@ -237,7 +237,7 @@ const Register = () => {
     })
     let [loading, setLoading] = useState(false);
     const [activeStep, setActiveStep] = useState(0);
-    const { notify, fetchUserData } = useContext(GlobalContext);
+    const { notify } = useContext(GlobalContext);
 
     const inputEvent = (e) => {
         const { name, value } = e.target;
@@ -309,9 +309,6 @@ const Register = () => {
                                 }).then(() => {
                                     setLoading(false);
                                     notify('Successfully Created Your Account!', 'success');
-                                    if(fetchUserData){
-                                        fetchUserData(firebase.auth().currentUser)
-                                    }
                                 }).catch(err => {
                                     setLoading(false);
                                     notify(err.message, 'error');

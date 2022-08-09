@@ -7,10 +7,10 @@ import numWords from 'num-words'
 
 export default function ReciptPrintModal(props) {
     const { data } = props
-    console.log("🚀 ~ file: ReciptPrintModal.js ~ line 10 ~ ReciptPrintModal ~ data", data)
     const cancelRef = React.useRef(null);
     const [loading, setLoading] = useState(false)
     const {notify, currentUserData} = useContext(GlobalContext)
+    console.log("🚁 ~ file: ReciptPrintModal.js ~ line 12 ~ ReciptPrintModal ~ currentUserData", currentUserData)
     const handleCreate = () => {
 
     }
@@ -34,7 +34,7 @@ export default function ReciptPrintModal(props) {
                                     <div className='reciept-top-container'>
                                         <div className='reciept-top-left-container'>
                                             <img
-                                                src={ currentUserData?.logo || require('../images/logo.jpeg')}
+                                                src={ data?.currentUserData?.logo || require('../images/logo.jpeg')}
                                                 className='reciept-top-left-logo'
                                                 alt='logo'
                                             />
