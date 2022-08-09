@@ -13,11 +13,9 @@ const ContextProvider = ({ children }) => {
         const unsubscribe = firebase.auth().onAuthStateChanged(async user => {
             if (!user) {
                 dispatch({ type: 'SET_CURRENT_USER', payload: null });
-                
+
             } else {
-              const userData = await getCurrnetUserData(user.uid);
-                dispatch({ type: 'SET_CURRENT_USER', payload: user });
-                dispatch({ type: 'SET_USER_DATA', payload: userData });
+                const fetchUser = await fetchUserData(user);
             }
         });
 
@@ -26,15 +24,22 @@ const ContextProvider = ({ children }) => {
         };
     }, []);
 
+    const fetchUserData = async (user) => {
+        const userData = await getCurrnetUserData(user.uid);
+        dispatch({ type: 'SET_CURRENT_USER', payload: user });
+        dispatch({ type: 'SET_USER_DATA', payload: userData });
+    }
+
+
     const getCurrnetUserData = async (uid) => {
-      const data =  firebase.firestore().collection('users').doc(uid).get().then(doc => {
+        const data = firebase.firestore().collection('users').doc(uid).get().then(doc => {
             if (doc.exists) {
                 return doc.data()
             } else {
                 return null
             }
         });
-    return data
+        return data
     }
 
     const notify = (message, type) => {
@@ -54,6 +59,7 @@ const ContextProvider = ({ children }) => {
             dispatch,
             currentUser: state.currentUser,
             currentUserData: state.currentUserData,
+            fetchUserData,
         }}>
             {
                 state.currentUserLoading ?
