@@ -19,7 +19,13 @@ export default function ReciptPrintModal(props) {
         unit: 'in',
     }
     const slipRef = React.createRef();
-    const signatureDateSplited = (data?.signatureDate).split("-")
+    const signatureDateSplited = (data?.signatureDate).split("-");
+    const getNumberToWord = (number) => {
+        if((number.toString()).includes(".")){
+            return numWords(number.split(".")[0]) + " and " + numWords(number.split(".")[1]) + " cents"
+        }
+        return (numWords(number || 0)).toUpperCase()
+    }
     return (
         <div className="modal fade" id="ReciptPrintModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
@@ -57,7 +63,7 @@ export default function ReciptPrintModal(props) {
                                         </div>
                                     </div>
                                     <div className='reciept-middle-container'> 
-                                        <p>Recebi de {data?.patient?.name} {data?.patient?.sureName} a quantia de {(numWords(data?.recieptAmount || 0)).toUpperCase()} referente a {data?.sessionQty} sessão(ões) de psicoterapia no(s) dia(s) {
+                                        <p>Recebi de {data?.patient?.name} {data?.patient?.sureName} a quantia de {getNumberToWord(data?.recieptAmount || 0)} referente a {data?.sessionQty} sessão(ões) de psicoterapia no(s) dia(s) {
                                             (data?.sessionArray || []).map((item, index) => {
                                                 return (
                                                     <span key={index}>{new Date(item).toLocaleDateString()} {index === (data?.sessionArray || []).length - 1 ? '' : ', '}</span>
