@@ -20,8 +20,9 @@ export default function ReciptPrintModal(props) {
     }
     const slipRef = React.createRef();
     const signatureDateSplited = (data?.signatureDate).split("-");
-    const getNumberToWord = (number) => {
-        if((number.toString()).includes(".")){
+    const getNumberToWord = (num) => {
+        const number = num.toString();
+        if((number).includes(".")){
             return numWords(number.split(".")[0]) + " and " + numWords(number.split(".")[1]) + " cents"
         }
         return (numWords(number || 0)).toUpperCase()
