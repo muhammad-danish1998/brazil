@@ -101,9 +101,9 @@ function Patients() {
   return (
     <div>
       <div className='patients_container'>
-        <h4 className='text-center' > All Patients </h4>
+        <h4 className='text-center' > Lista de pacientes </h4>
         <div className='patient-add-details'>
-          <button className='btn btn-primary btn-sm mr-1' data-bs-toggle="modal" data-bs-target="#patientEditModal" >Add Patients Details</button>
+          <button className='btn btn-primary btn-sm mr-1' data-bs-toggle="modal" data-bs-target="#patientEditModal" >Adicionar Paciente</button>
         </div>
         <PatientEditModal
           data={editData}
@@ -118,13 +118,13 @@ function Patients() {
           <table className="table table-striped table-hover">
             <thead>
               <tr>
-                <th scope="col">S.No</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Charges</th>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Sobrenome</th>
+                <th scope="col">Valor</th>
                 <th scope="col">E-mail</th>
-                <th scope="col">Patient Since</th>
-                <th scope="col">Actions</th>
+                <th scope="col">Paciente desde</th>
+                <th scope="col">Ações</th>
               </tr>
             </thead>
             <tbody>
@@ -138,9 +138,9 @@ function Patients() {
                     <td>{patient?.email}</td>
                     <td>{patient?.patientSince}</td>
                     <td>
-                      <button onClick={() => handleEdit(patient)} data-bs-toggle="modal" data-bs-target="#patientEditModal" className='btn btn-primary btn-sm mr-1'>Edit</button>
-                      <button onClick={(e) => handleDelete(e, patient?.docId)} className='btn btn-danger btn-sm'>Delete</button>
-                      <button onClick={()=> setEditData(patient)} className='btn btn btn-secondary btn-sm' data-bs-toggle="modal" data-bs-target="#ReciptCreationModal">Print Reciept</button>
+                      <button onClick={() => handleEdit(patient)} data-bs-toggle="modal" data-bs-target="#patientEditModal" className='btn btn-primary btn-sm mr-1'>Editar</button>
+                      <button onClick={(e) => handleDelete(e, patient?.docId)} className='btn btn-danger btn-sm'>Deletar</button>
+                      <button onClick={()=> setEditData(patient)} className='btn btn btn-secondary btn-sm' data-bs-toggle="modal" data-bs-target="#ReciptCreationModal">Gerar Recibo</button>
                     </td>
                   </tr>
                 ))

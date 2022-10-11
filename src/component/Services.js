@@ -14,7 +14,7 @@ const Services = () => {
                     <li>- Cadastro de pacientes</li>
                     <li>- Gerador de recibos</li>
                 </ul>
-                <h5>Funcionalidades em desenvolvimento</h5>
+                <h5>Funcionalidades  desenvolvimento</h5>
                 <ul>
                 <li>- Agenda (integrada aos recibos)</li> 
                 <li>- Envio do recibo por e-mail</li>
@@ -23,7 +23,7 @@ const Services = () => {
                 <li>- Abertura de CNPJ</li>
                 <li>- Obrigações Acessórias</li>
                 </ul>
-                 <button type="button" className="btn  ">Get Started</button>
+                 <button type="button" className="btn  ">Veja aqui</button>
                 </div>
             </div>
         </div>

@@ -38,29 +38,29 @@ const Contact = () => {
     return (
         <>
             <div className='my-5'>
-                <h1 className='text-center'> Login</h1>
+                <h1 className='text-center'>Faça login em sua conta</h1>
             </div>
             <div className='container login_div'>
                 <div className='row'>
                     <div className='col-md-6 col-10 mx-auto'>
                         <form onSubmit={formSubmit}>
                             <div className="mb-3">
-                                <label htmlFor="emailFormItem" className="form-label">Email address</label>
+                                <label htmlFor="emailFormItem" className="form-label">Endereço de e-mail</label>
                                 <input type="email"
                                     className="form-control"
                                     id="emailFormItem"
-                                    placeholder="name@example.com"
+                                    placeholder="Endereço de e-mail"
                                     name='email'
                                     value={data.email}
                                     onChange={inputEvent}
                                 />
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="passwordFormItem" className="form-label">Password</label>
+                                <label htmlFor="passwordFormItem" className="form-label">Senha</label>
                                 <input type="password"
                                     className="form-control"
                                     id="passwordFormItem"
-                                    placeholder="name@example.com"
+                                    placeholder="Senha"
                                     name='password'
                                     value={data.password}
                                     onChange={inputEvent}
@@ -73,7 +73,7 @@ const Contact = () => {
                                             <div className="spinner-border text-white" role="status">
                                             </div>
                                         ) : (
-                                            'Login'
+                                            'Entrar'
                                         )
                                     }</button>
                             </div>

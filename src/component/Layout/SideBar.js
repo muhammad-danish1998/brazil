@@ -25,13 +25,13 @@ export default function SideBar({children}) {
                     </NavLink>
                 <ul className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li  className="nav-item ">
-                        <NavLink to={"/dashboard"}  className="nav-link px-0 align-middle">
+                        {/* <NavLink to={"/dashboard"}  className="nav-link px-0 align-middle">
                             <i className="fs-4 bi-speedometer2"></i> <span className="ms-1 d-none d-sm-inline">Dashboard</span>
-                             </NavLink>
+                             </NavLink> */}
                     </li>
                     <li className="nav-item ">
                         <NavLink to={"/patients"} className="nav-link align-middle px-0">
-                            <i className="fs-4 bi-person"></i> <span className="ms-1 d-none d-sm-inline">Patients</span>
+                            <i className="fs-4 bi-person"></i> <span className="ms-1 d-none d-sm-inline">Pacientes</span>
                         </NavLink>
                     </li>
                 </ul>

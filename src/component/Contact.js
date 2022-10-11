@@ -33,7 +33,7 @@ const Contact = () => {
                     <div className='col-md-6 col-10 mx-auto'>
                         <form onSubmit={formSubmit}>
                             <div className="mb-3">
-                                <label htmlFor="exampleFormControlInput1" className="form-label">Name</label>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Nome</label>
                                 <input type="text"
                                     className="form-control"
                                     id="exampleFormControlInput1"
@@ -44,7 +44,7 @@ const Contact = () => {
                                 />
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="exampleFormControlInput1" className="form-label">Phone</label>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Celular</label>
                                 <input type="number"
                                     className="form-control"
                                     id="exampleFormControlInput1"
@@ -55,7 +55,7 @@ const Contact = () => {
                                 />
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="exampleFormControlInput1" className="form-label">Email address</label>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Endereço de e-mail</label>
                                 <input type="email"
                                     className="form-control"
                                     id="exampleFormControlInput1"
@@ -66,7 +66,7 @@ const Contact = () => {
                                 />
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="exampleFormControlTextarea1" className="form-label">Message</label>
+                                <label htmlFor="exampleFormControlTextarea1" className="form-label">Mensagem</label>
                                 <textarea className="form-control"
                                     id="exampleFormControlTextarea1"
                                     rows="3"
@@ -76,7 +76,7 @@ const Contact = () => {
                                 </textarea>
                             </div>
                             <div className="col-12">
-                                <button className="btn btn-outline-primary" type="submit" style={{ fontWeight: 'bold' }}>Submit form</button>
+                                <button className="btn btn-outline-primary" type="submit" style={{ fontWeight: 'bold' }}>Enviar</button>
                             </div>
                         </form>
                     </div>

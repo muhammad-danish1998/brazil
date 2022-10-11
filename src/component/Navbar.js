@@ -24,17 +24,17 @@ const Navbar = () => {
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/service">Serviços</NavLink>
                             </li>
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <NavLink className="nav-link" to="/price">Planos</NavLink>
-                            </li>
+                            </li> */}
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/contact">Fale Conosco</NavLink>
                             </li>
                             <li className="nav-item btn-navbar">
-                            <NavLink className="nav-link" to="/register">Registre-se</NavLink>
+                            <NavLink className="nav-link" to="/register">Inscrever-se</NavLink>
                             </li>
                             <li className="nav-item btn-navbar">
-                            <NavLink className="nav-link" to="/login">Login</NavLink>
+                            <NavLink className="nav-link" to="/login">Entrar</NavLink>
                             </li>
                         </ul>
                     </div>

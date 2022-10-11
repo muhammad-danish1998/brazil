@@ -25,7 +25,7 @@ export default function ReciptCreationModal(props) {
             }
         })
         if (hasNull) {
-            notify("Please select all session date", "error")
+            notify("Por favor preencher todos os campos do recibo.", "error")
         } else {
             openModalRef.current.click()
         }
@@ -88,7 +88,7 @@ export default function ReciptCreationModal(props) {
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel"> Patient Recipts</h5>
+                        <h5 className="modal-title" id="exampleModalLabel">Gerar Recibo</h5>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
@@ -96,7 +96,7 @@ export default function ReciptCreationModal(props) {
                             {/* New Row */}
                             <div className="row">
                                 <div className="col-md-6 mb-3">
-                                    <label htmlFor="PatientNameFormItem" className="form-label">Reciepts</label>
+                                    <label htmlFor="PatientNameFormItem" className="form-label">Número de sessões</label>
                                     <select value={sessionQty} onChange={(e) => handleSelectChange(e)} className="form-select" aria-label="Default select example">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -118,7 +118,7 @@ export default function ReciptCreationModal(props) {
                                 sessionArray.map((item, index) => (
                                     <div key={index} className="row">
                                         <div className="col-md-6 mb-3">
-                                            <label htmlFor="PatientNameFormItem" className="form-label">Reciept</label>
+                                            <label htmlFor="PatientNameFormItem" className="form-label">Sessão</label>
                                             &nbsp;
                                             {index + 1}
                                         </div>
@@ -138,7 +138,7 @@ export default function ReciptCreationModal(props) {
                             {/* New Row */}
                             <div className="row">
                                 <div className="col-md-6 mb-3">
-                                    <label htmlFor="PatientNameFormItem" className="form-label">Signature Date</label>
+                                    <label htmlFor="PatientNameFormItem" className="form-label">Data do recibo</label>
                                     <input type="date"
                                         className="form-control"
                                         placeholder="Date"
@@ -148,11 +148,11 @@ export default function ReciptCreationModal(props) {
                                     />
                                 </div>
                                 <div className="col-md-6 mb-3">
-                                    <label htmlFor="PatientNameFormItem" className="form-label">Recipt Amount</label>
+                                    <label htmlFor="PatientNameFormItem" className="form-label">Valor do Recibo</label>
                                     <input
                                         type="number"
                                         className="form-control"
-                                        placeholder="Amount"
+                                        placeholder="Valor"
                                         name='recieptAmount'
                                         value={recieptAmount}
                                         onChange={(e) => setRecieptAmount(e.target.value)}
@@ -164,7 +164,7 @@ export default function ReciptCreationModal(props) {
                         </div>
                     </div>
                     <div className="modal-footer">
-                        <button ref={cancelRef} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button ref={cancelRef} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                         <span ref={openModalRef} data-bs-toggle="modal" data-bs-target="#ReciptPrintModal"></span>
                         <button disabled={loading} onClick={handleCreate} type="button" className="btn btn-primary" >
                             {
